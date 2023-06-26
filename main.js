@@ -1,13 +1,13 @@
-const PORT = process.env.PORT
+const PORT = 3000
 const express = require("express")
-const dbInit = require("./config/database")
 const dotenv = require('dotenv')
+const dbInit = require("./config/database")
 const app = express()
 
 const middleware = require("./config/middleware")
 
-dbInit()
 dotenv.config()
+dbInit()
 
 // Import routes
 const userRouter = require("./route/user")

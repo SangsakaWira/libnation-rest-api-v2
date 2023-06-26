@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const URI = process.env.MONGODB;
+const URI = process.env.MONGODB || "http://localhost:27107";
 
 module.exports = () => {
     // DB configuration
