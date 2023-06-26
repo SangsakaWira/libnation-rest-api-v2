@@ -1,4 +1,4 @@
-const PORT = 3000
+const PORT = process.env.PORT
 const express = require("express")
 const dbInit = require("./config/database")
 const dotenv = require('dotenv')
