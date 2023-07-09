@@ -9,6 +9,7 @@ const bookSchema = mongoose.Schema({
     harga:String,
     deskripsi:String,
     cover:String,
+    image:String,
 });
 
 const book = mongoose.model('book', bookSchema);

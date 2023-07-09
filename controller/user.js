@@ -2,26 +2,26 @@
 const bcryptjs = require('bcryptjs')
 const jwt = require('jsonwebtoken');
 const user = require('../model/user')
+const SECRET_KEY = process.env.SECRET_KEY || "scr3t561!kxlh"
 
 exports.login = async (req, res) => {
     try {
         const { username, password } = req.body;
-        const userData = await user.findOne({ username });
-        const match = await bcryptjs.compare(password, userData.password);
-
+        const userData = await user.findOne({ username:username });
         if (userData) {
+            const match = await bcryptjs.compare(password, userData.password);
             if (match) {
-                const token = jwt.sign({ id_user:userData._id, role:userData.role }, process.env.SECRET_KEY, { expiresIn: '60s' });
-                res.send({
+                const token = jwt.sign({ id_user:userData._id, role:userData.role }, SECRET_KEY, { expiresIn: '36000s' });
+                res.status(200).send({
                     token
                 })
             } else {
-                res.send({
+                res.status(401).send({
                     msg:"Password salah!"
                 })
             }
         } else {
-            res.send({
+            res.status(401).send({
                 msg: "User tidak ditemukan!"
             })
         }
